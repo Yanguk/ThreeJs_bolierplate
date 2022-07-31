@@ -1,13 +1,19 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CleanTerminalPlugin = require('clean-terminal-webpack-plugin');
 
 const mode = process.env.NODE_ENV || 'development';
+const HOST = 'localhost';
+const PORT = 8080;
 const isDevelopment = mode === 'development';
+const colorize = (colorNum, output) => `\x1B[${colorNum}m${output}\x1B[0m`;
+const devSeverMessage = `Dev server running on http://${HOST}:${PORT}`;
+const message = colorize(34, devSeverMessage);
 
 module.exports = {
   mode,
-  entry: './src/app.js',
+  entry: './src/App.js',
   output: {
     path: path.resolve('build'),
     filename: 'index.js',
@@ -23,7 +29,7 @@ module.exports = {
       overlay: true,
       logging: 'error',
     },
-    port: 8080,
+    port: PORT,
     open: {
       app: {
         name: 'Google Chrome',
@@ -56,7 +62,16 @@ module.exports = {
         }
         : false,
     }),
-    new MiniCssExtractPlugin(),
+    ...(isDevelopment
+      ? [
+        new CleanTerminalPlugin({
+          message,
+          onlyInWatchMode: false,
+        }),
+      ]
+      : [
+        new MiniCssExtractPlugin(),
+      ]),
   ],
   performance: {
     maxEntrypointSize: 1024000,
