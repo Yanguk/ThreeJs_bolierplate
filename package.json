@@ -36,7 +36,6 @@
     "webpack-dev-server": "^4.9.3"
   },
   "dependencies": {
-    "path-browserify": "^1.0.1",
     "three": "^0.143.0"
   }
 }
