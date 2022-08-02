@@ -20,10 +20,10 @@ module.exports = {
     clean: true,
   },
   devServer: {
-    hot: true,
+    // hot: true,
     static: {
       directory: path.join(__dirname, 'public'),
-      publicPath: '/',
+      publicPath: '/public',
     },
     client: {
       overlay: true,
