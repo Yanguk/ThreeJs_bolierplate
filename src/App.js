@@ -6,4 +6,3 @@ document.body.appendChild(renderer.domElement);
 
 window.addEventListener('resize', stageResize);
 window.requestAnimationFrame(animate);
-

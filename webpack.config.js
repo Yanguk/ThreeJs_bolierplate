@@ -65,23 +65,21 @@ module.exports = {
         env: mode === 'development' ? '(개발용)' : '',
       },
       minify:
-      mode === 'production'
-        ? {
-          collapseWhitespace: true,
-          removeComments: true,
-        }
-        : false,
+        mode === 'production'
+          ? {
+              collapseWhitespace: true,
+              removeComments: true,
+            }
+          : false,
     }),
     ...(isDevelopment
       ? [
-        new CleanTerminalPlugin({
-          message,
-          onlyInWatchMode: false,
-        }),
-      ]
-      : [
-        new MiniCssExtractPlugin(),
-      ]),
+          new CleanTerminalPlugin({
+            message,
+            onlyInWatchMode: false,
+          }),
+        ]
+      : [new MiniCssExtractPlugin()]),
   ],
   performance: {
     maxEntrypointSize: 1024000,

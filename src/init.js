@@ -1,9 +1,14 @@
 import * as THREE from 'three';
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import './App.css';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(
+  75,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  1000
+);
+
 camera.position.set(10, 10, 10);
 camera.lookAt(scene.position);
 
@@ -24,7 +29,7 @@ scene.add(spotLight);
 const spotLightHelper = new THREE.SpotLightHelper(spotLight);
 scene.add(spotLightHelper);
 
-const controls = new OrbitControls(camera, renderer.domElement)
+const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 
 const stageResize = () => {
@@ -33,4 +38,4 @@ const stageResize = () => {
   camera.aspect = innerWidth / innerHeight;
 };
 
-export { renderer, scene, camera, stageResize }
+export { renderer, scene, camera, stageResize };
